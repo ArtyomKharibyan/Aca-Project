@@ -1,57 +1,72 @@
-import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {Form, Alert} from "react-bootstrap";
-import {useUserAuth} from "../../context/UserAuthContext";
-import OutlinedInput from '@mui/material/OutlinedInput';
-import {Button} from "@mui/material"
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUserAuth } from "../../context/UserAuthContext";
+import { Button, Typography, TextField, Grid } from "@mui/material";
 
 const SignUp = () => {
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
-    const [password, setPassword] = useState("");
-    const {signUp} = useUserAuth();
-    let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const { setIsAuth } = useUserAuth();
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const { signUp } = useUserAuth();
+  let navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
-        try {
-            await signUp(email, password);
-            navigate("/");
-        } catch (err) {
-            setError(err.message);
-        }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signUp(email, password);
+      setIsAuth(true);
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+  const onSignInClick = () => {
+    navigate("/login");
+  };
 
-    return (
-        <>
-            <div>
-                <h2 className="mb-3">Firebase Auth Signup</h2>
-                {error && <Alert variant="danger">{error}</Alert>}
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-                            type="email"
-                            placeholder="Email address"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </Form.Group>
+  return (
+    <Grid container rowGap={"20px"}>
+      <Grid item>
+        {error && <Typography color="error">{error}</Typography>}
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          xs={12}
+          sx={{ width: "100%" }}
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField
+          sx={{ width: "100%" }}
+          xs={12}
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </Grid>
 
-                    <Form.Group className="form" controlId="formBasicPassword">
-                        <OutlinedInput className="form"
-                            type="password"
-                            placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </Form.Group>
-
-                    <div className="signup">
-                        <Button type="submit" variant="contained">Sign Up</Button>
-                    </div>
-                </Form>
-            </div>
-        </>
-    );
+      <Grid item xs={12}>
+        <Button fullWidth onClick={handleSubmit} variant="contained">
+          Sign Up
+        </Button>
+      </Grid>
+      <Grid item container justifyContent="center" alignItems="center" xs={12}>
+        <Typography>Already have an account?</Typography>{" "}
+        <Button variant="transparent" onClick={onSignInClick}>
+          Sign In!
+        </Button>
+      </Grid>
+    </Grid>
+  );
 };
 
 export default SignUp;

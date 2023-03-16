@@ -198,11 +198,16 @@ textarea {
     overflow-y: auto;
 }
 
-.signup {
+.signUp {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.authentication {
+    width: 300px;
+
 }
 
 .form {
@@ -212,6 +217,7 @@ textarea {
 
 
 .signup {
+    min-width: 300px;
     padding: 10px;
     text-align: center;
     display: flex;
