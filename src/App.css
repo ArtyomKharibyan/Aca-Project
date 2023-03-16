@@ -1,4 +1,4 @@
-.App {
+App {
     text-align: center;
 }
 
@@ -53,11 +53,11 @@ a {
     font-size: 25px;
 }
 
-.cpContainer .inputGp {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-}
+/*.cpContainer .inputGp {*/
+/*    margin-top: 30px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
 .inputGp input,
 .inputGp textarea {
@@ -90,8 +90,8 @@ textarea {
 }
 
 .loginPage {
-    width: 100vw;
-    height: calc(100vh - 80px);
+    /*width: 100vw;*/
+    /*height: calc(100vh - 80px);*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,6 +119,7 @@ textarea {
     background-color: white;
     background-repeat: no-repeat;
     background-position: 12px 11px;
+    margin-top: 5px;
 }
 
 .login-with-google-btn:hover {
@@ -195,4 +196,23 @@ textarea {
     width: 100%;
     overflow: hidden;
     overflow-y: auto;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+ box-sizing: border-box;
+    padding: 10px;
+}
+
+
+.signup {
+    padding: 10px;
+    text-align: center;
+    display: flex;
 }

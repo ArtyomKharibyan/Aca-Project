@@ -14,7 +14,6 @@ function GoogleAuth({setIsAuth}) {
     }
     return (
         <div className="loginPage">
-            <p>Sign In With Google to Continue</p>
             <button onClick={signInWithGoogle} className="login-with-google-btn">SigIn With Google</button>
         </div>
     )

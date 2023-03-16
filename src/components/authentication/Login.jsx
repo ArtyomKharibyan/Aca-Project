@@ -7,8 +7,10 @@ function Login({setIsAuth}) {
 
     return (
         <UserAuthContextProvider>
+            <div className="signup">
+                <SignUp />
+            </div>
             <GoogleAuth setIsAuth={setIsAuth}/>
-            <SignUp/>
         </UserAuthContextProvider>
     )
 }
